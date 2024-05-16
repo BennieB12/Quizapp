@@ -56,3 +56,13 @@ let questions = [
     right_answer: 3,
 },
 ];
+
+
+
+
+
+function init(){
+
+document.getElementById('all-question').innerHTML = questions.length; // damit wird die gesamit länge angezeigt bei Frage blabla von (allen Fragen als integer)
+
+}
