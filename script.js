@@ -78,9 +78,16 @@ function showQuestion(){        //hilfsfunktion um um aktuelle Frage anzuzeigen 
   function answer(selection){//selcetion hat den wert answer_1,2,3 oder 4 
     let question = questions[currentQuestion]; // um zur aktuellen frage zu kommen
     let selectedQuestionnumber = selection.slice(-1)// der letzte buchstabe des Strings in dem fall die integer 3 wird gespeichert
+    
+    let idOfRightAnswer = `answer_${question['right_answer']}`; // string definiert um bei falscher antwort die richtige zu highlighten
+    
     if(selectedQuestionnumber == question['right_answer']){
       document.getElementById(selection).parentNode.classList.add('bg-success');// parentnode spricht das übergeornete Element an auch wenn es keine eigene ID hat
     } else{ // ansonsten, sag es ist die falsche antwort
       document.getElementById(selection).parentNode.classList.add('bg-danger');
+      document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
     }
+    document.getElementById('next-button').disabled = false;
   }
+
+
