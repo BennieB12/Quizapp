@@ -79,9 +79,8 @@ function showQuestion(){        //hilfsfunktion um um aktuelle Frage anzuzeigen 
     let question = questions[currentQuestion]; // um zur aktuellen frage zu kommen
     let selectedQuestionnumber = selection.slice(-1)// der letzte buchstabe des Strings in dem fall die integer 3 wird gespeichert
     if(selectedQuestionnumber == question['right_answer']){
-      document.getElementById(`answer_${selectedQuestionnumber}`).classList.add('text-success');
+      document.getElementById(selection).parentNode.classList.add('bg-success');// parentnode spricht das übergeornete Element an auch wenn es keine eigene ID hat
     } else{ // ansonsten, sag es ist die falsche antwort
-      document.getElementById(`answer_${selectedQuestionnumber}`).classList.add('text-danger');
+      document.getElementById(selection).parentNode.classList.add('bg-danger');
     }
-  init();
   }
