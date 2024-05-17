@@ -66,14 +66,20 @@ function init() {
 
 
 
-function showQuestion(){        //hilfsfunktion um um aktuelle Frage anzuzeigen in der Init
+function showQuestion(){//hilfsfunktion um um aktuelle Frage anzuzeigen in der Init
+    
+    if(currentQuestion >= questions.length){// wenn die aktuelle Frage nicht mehr im fragenpool ist bzw. wenn das ende erreicht wurde tue fogendes
+      // show endscreen
+    }else{ // ansonsten mach normal weiter
     let question = questions[currentQuestion]; // neuen container namens question definiert in den die Currentquestion(ganzes JsonArray hineinkopiert wird)
     document.getElementById('questiontext').innerHTML = question['question']; // ruft nacheinander die einzelnen inhalter der jeweiligen fragen auf genauso wie die Antworten
     document.getElementById('answer_1').innerHTML = question['answer_1'];
     document.getElementById('answer_2').innerHTML = question['answer_2'];
     document.getElementById('answer_3').innerHTML = question['answer_3'];
     document.getElementById('answer_4').innerHTML = question['answer_4'];
-  }
+    
+    document.getElementById('actual-question').innerHTML = currentQuestion +1; // zeigt die aktuelle Frage an, die.. Frage von 7
+  }}
 
   function answer(selection){//selcetion hat den wert answer_1,2,3 oder 4 
     let question = questions[currentQuestion]; // um zur aktuellen frage zu kommen
@@ -87,19 +93,26 @@ function showQuestion(){        //hilfsfunktion um um aktuelle Frage anzuzeigen 
       document.getElementById(selection).parentNode.classList.add('bg-danger');
       document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
     }
-    document.getElementById('next-button').disabled = false;
+    document.getElementById('next-button').disabled = false; // wir sagen das der wert nun false ist und somit falsch ( also enable)
   }
 
   function nextQuestion(){
     currentQuestion++; // Wert der Globalen Variable wir erhöhrt um 1, da currentquestion die aktuelle Frage aufruft wird so die nächste frage gespeichert
     document.getElementById('next-button').disabled = true; // setzt den Button zurück 
+    resetAnswerButtons(); // ruft Klasse zum entfernen der klassen auf 
     showQuestion();// ruft erneut die Funktion auf, aber mit erhötem wert in let question = questions[currentQuestion]; , weil mit ++ erhögt wurde
     
   }
 
   function resetAnswerButtons(){
-    document.getElementById(selection).parentNode.classList.add('bg-danger');
-    document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+    document.getElementById('answer_1').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
   }
 
 
