@@ -90,4 +90,9 @@ function showQuestion(){        //hilfsfunktion um um aktuelle Frage anzuzeigen 
     document.getElementById('next-button').disabled = false;
   }
 
+  function nextQuestion(){
+    currentQuestion++; // Wert der Globalen Variable wir erhöhrt um 1, da currentquestion die aktuelle Frage aufruft wird so die nächste frage gespeichert
+    showQuestion();// ruft erneut die Funktion auf, aber mit erhötem wert in let question = questions[currentQuestion]; , weil mit ++ erhögt wurde
+  }
+
 
