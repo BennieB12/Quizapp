@@ -8,12 +8,12 @@ let questions = [
     right_answer: 3,
   },
   {
-    question: "Wer hat HTML Erfunden?",
-    answer_1: "Chuck Norris",
-    answer_2: "Steve Jobs",
-    answer_3: "Tim Berners-Lee",
-    answer_4: "Justin Bieber",
-    right_answer: 3,
+    question: "Was bedeutet das HTML Tag <a>?",
+    answer_1: "Fetter Text",
+    answer_2: "Ein Link",
+    answer_3: "Ein Container",
+    answer_4: "Kursiver Text",
+    right_answer: 2,
   },
   {
     question: "Wer hat HTML Erfunden?",
@@ -93,6 +93,9 @@ function showQuestion(){        //hilfsfunktion um um aktuelle Frage anzuzeigen 
   function nextQuestion(){
     currentQuestion++; // Wert der Globalen Variable wir erhöhrt um 1, da currentquestion die aktuelle Frage aufruft wird so die nächste frage gespeichert
     showQuestion();// ruft erneut die Funktion auf, aber mit erhötem wert in let question = questions[currentQuestion]; , weil mit ++ erhögt wurde
+    document.getElementById('next-button').disabled = true; // setzt den Button zurück 
+    document.getElementById(selection).parentNode.classList.remove('bg-danger');
+    document.getElementById(idOfRightAnswer).parentNode.classList.remove('bg-success');
   }
 
 
