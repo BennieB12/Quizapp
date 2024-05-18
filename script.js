@@ -64,8 +64,6 @@ function init() {
   showQuestion();// verbindung zur funktion, dadurch wird sie automatisch aufgerufen
 }
 
-
-
 function showQuestion(){//hilfsfunktion um um aktuelle Frage anzuzeigen in der Init
     
     if(currentQuestion >= questions.length){// wenn die aktuelle Frage nicht mehr im fragenpool ist bzw. wenn das ende erreicht wurde tue fogendes
@@ -96,7 +94,7 @@ function showQuestion(){//hilfsfunktion um um aktuelle Frage anzuzeigen in der I
     document.getElementById('next-button').disabled = false; // wir sagen das der wert nun false ist und somit falsch ( also enable)
   }
 
-  function nextQuestion(){
+  function nextQuestion(){// löst das anzeigen der n#chsten Frage aus
     currentQuestion++; // Wert der Globalen Variable wir erhöhrt um 1, da currentquestion die aktuelle Frage aufruft wird so die nächste frage gespeichert
     document.getElementById('next-button').disabled = true; // setzt den Button zurück 
     resetAnswerButtons(); // ruft Klasse zum entfernen der klassen auf 
