@@ -67,7 +67,10 @@ function init() {
 function showQuestion(){//hilfsfunktion um um aktuelle Frage anzuzeigen in der Init
     
     if(currentQuestion >= questions.length){// wenn die aktuelle Frage nicht mehr im fragenpool ist bzw. wenn das ende erreicht wurde tue fogendes
-      // show endscreen
+      document.getElementById('end-card').style = ''; // wir greifen auf das HTML tag welches wir gesetzt haben zu ( style ="display:none;") und ersetzt es durch nichts(leere klasse) [show endscreen
+      document.getElementById('end-card').innerHTML += '<img src="./img/brain result.png">';
+      document.getElementById('question-card').style = 'display: none;'; // sorgt dafür das der andere container ausgeblendet wird! (und der neue direkt zentriert wird)
+    
     }else{ // ansonsten mach normal weiter
     let question = questions[currentQuestion]; // neuen container namens question definiert in den die Currentquestion(ganzes JsonArray hineinkopiert wird)
     document.getElementById('questiontext').innerHTML = question['question']; // ruft nacheinander die einzelnen inhalter der jeweiligen fragen auf genauso wie die Antworten
