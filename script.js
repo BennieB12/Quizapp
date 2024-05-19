@@ -58,7 +58,7 @@ let questions = [
 ];
 
 let currentQuestion = 0; // Globale variable in Integer zum anzeigen der Aktuellen frage
-
+let rightAnswers = 0; // Gloabale variable um die richtigen Antworten zu zählen
 function init() {
   document.getElementById("all-questions").innerHTML = questions.length; // damit wird die gesamit länge angezeigt bei Frage blabla von (allen Fragen als integer)
   showQuestion();// verbindung zur funktion, dadurch wird sie automatisch aufgerufen
@@ -68,10 +68,11 @@ function showQuestion(){//hilfsfunktion um um aktuelle Frage anzuzeigen in der I
     
     if(currentQuestion >= questions.length){// wenn die aktuelle Frage nicht mehr im fragenpool ist bzw. wenn das ende erreicht wurde tue fogendes
       document.getElementById('end-card').style = ''; // wir greifen auf das HTML tag welches wir gesetzt haben zu ( style ="display:none;") und ersetzt es durch nichts(leere klasse) [show endscreen
-      document.getElementById('end-card').innerHTML += '<img src="./img/brain result.png">'; // fügt den endscreen hinzu in die div
-      document.getElementById('counter-from').innerHTML = questions.length;
+      document.getElementById('counter-from').innerHTML = questions.length; // zeigt an wieviele Fragen hätten richtig beantwortet werden können
+      document.getElementById('question-counter').innerHTML = rightAnswers; // zeigt an wieviele Fragen richtig beantwortet wurden
       document.getElementById('question-card').style = 'display: none'; // sorgt dafür das der andere container ausgeblendet wird! (und der neue direkt zentriert wird)
-    
+      document.getElementById('show-screen').src = './img/brain result.png'; // tauscht das bild vom startscreen mit dem endscreen
+
     }else{ // ansonsten mach normal weiter
     let question = questions[currentQuestion]; // neuen container namens question definiert in den die Currentquestion(ganzes JsonArray hineinkopiert wird)
     document.getElementById('questiontext').innerHTML = question['question']; // ruft nacheinander die einzelnen inhalter der jeweiligen fragen auf genauso wie die Antworten
@@ -91,6 +92,7 @@ function showQuestion(){//hilfsfunktion um um aktuelle Frage anzuzeigen in der I
     
     if(selectedQuestionnumber == question['right_answer']){
       document.getElementById(selection).parentNode.classList.add('bg-success');// parentnode spricht das übergeornete Element an auch wenn es keine eigene ID hat
+      rightAnswers++; // erhöt bei richtiger antwort die Globale variable um 1fum sie später anzuzeigen
     } else{ // ansonsten, sag es ist die falsche antwort
       document.getElementById(selection).parentNode.classList.add('bg-danger');
       document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
