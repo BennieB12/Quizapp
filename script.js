@@ -69,6 +69,7 @@ function showQuestion(){//hilfsfunktion um um aktuelle Frage anzuzeigen in der I
     if(currentQuestion >= questions.length){// wenn die aktuelle Frage nicht mehr im fragenpool ist bzw. wenn das ende erreicht wurde tue fogendes
       document.getElementById('end-card').style = ''; // wir greifen auf das HTML tag welches wir gesetzt haben zu ( style ="display:none;") und ersetzt es durch nichts(leere klasse) [show endscreen
       document.getElementById('end-card').innerHTML += '<img src="./img/brain result.png">'; // fügt den endscreen hinzu in die div
+      document.getElementById('counter-from').innerHTML = questions.length;
       document.getElementById('question-card').style = 'display: none'; // sorgt dafür das der andere container ausgeblendet wird! (und der neue direkt zentriert wird)
     
     }else{ // ansonsten mach normal weiter
@@ -100,7 +101,7 @@ function showQuestion(){//hilfsfunktion um um aktuelle Frage anzuzeigen in der I
   function nextQuestion(){// löst das anzeigen der n#chsten Frage aus
     currentQuestion++; // Wert der Globalen Variable wir erhöhrt um 1, da currentquestion die aktuelle Frage aufruft wird so die nächste frage gespeichert
     document.getElementById('next-button').disabled = true; // setzt den Button zurück 
-    resetAnswerButtons(); // ruft Klasse zum entfernen der klassen auf 
+    resetAnswerButtons(); // ruft funktion zum entfernen der klassen auf 
     showQuestion();// ruft erneut die Funktion auf, aber mit erhötem wert in let question = questions[currentQuestion]; , weil mit ++ erhögt wurde
     
   }
