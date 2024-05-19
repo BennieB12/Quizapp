@@ -43,3 +43,9 @@ body{
     margin-bottom: 16px;
     margin-top: 16px;
 }
+.button-row{
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    margin-bottom: 8px;
+}

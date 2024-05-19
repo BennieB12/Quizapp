@@ -74,16 +74,24 @@ function showQuestion() {
     document.getElementById("question-counter").innerHTML = rightAnswers; // zeigt an wieviele Fragen richtig beantwortet wurden
     document.getElementById("question-card").style = "display: none"; // sorgt dafür das der andere container ausgeblendet wird! (und der neue direkt zentriert wird)
     document.getElementById("show-screen").src = "./img/brain result.png"; // tauscht das bild vom startscreen mit dem endscreen
-  } else {
-    // ansonsten mach normal weiter
+  } else {// ansonsten mach normal weiter , show question
+  
+    let percent = (currentQuestion +1) / questions.length; // zum anzeigen der prozente in der progressbar aus bootstrap| aktuelle frage geteilt durch alle fragen 
+    percent = Math.round(percent * 100); // oben kommt der Wert (0,) raus und dieser Wert wird hier umgewandelt und mit math.round aufgerundet
+
+    document.getElementById("progress-bar").innerHTML = `${percent} %`; // in der Progrssbar wird nun der ausgerechnete Wert angezeigt
+    document.getElementById("progress-bar").style = `width: ${percent}%;`; // ändern im stylingbereich die weite der progressbar mit style.width zu der größe der Prozentvariable in px
+
     let question = questions[currentQuestion]; // neuen container namens question definiert in den die Currentquestion(ganzes JsonArray hineinkopiert wird)
+   
+    document.getElementById("actual-question").innerHTML = currentQuestion + 1; // zeigt die aktuelle Frage an, die.. Frage von 7
+
     document.getElementById("questiontext").innerHTML = question["question"]; // ruft nacheinander die einzelnen inhalter der jeweiligen fragen auf genauso wie die Antworten
-    document.getElementById("answer_1").innerHTML = question["answer_1"];
+    document.getElementById("answer_1").innerHTML = question["answer_1"]; // antwort 1, 2,3,4 bei jedem Block
     document.getElementById("answer_2").innerHTML = question["answer_2"];
     document.getElementById("answer_3").innerHTML = question["answer_3"];
     document.getElementById("answer_4").innerHTML = question["answer_4"];
 
-    document.getElementById("actual-question").innerHTML = currentQuestion + 1; // zeigt die aktuelle Frage an, die.. Frage von 7
   }
 }
 
@@ -99,14 +107,7 @@ function answer(selection) {
     document.getElementById(selection).parentNode.classList.add("bg-success"); // parentnode spricht das übergeornete Element an auch wenn es keine eigene ID hat
     rightAnswers++; // erhöt bei richtiger antwort die Globale variable um 1fum sie später anzuzeigen
   } else {
-    // ansonsten, sag es ist die falsche antwort , show question
-
-    let percent = currentQuestion / questions.length;// zum anzeigen der prozente in der progressbar aus bootstrap| aktuelle frage geteilt durch alle fragen
-    percent = Math.round(percent * 100); // oben kommt der Wert (0,) raus und dieser Wert wird hier umgewandelt und mit math.round aufgerundet
-
-    document.getElementById("progress-bar").innerHTML = `${percent} %`;// in der Progrssbar wird nun der ausgerechnete Wert angezeigt
-    
-    
+    // ansonsten, sag es ist die falsche antwort
     document.getElementById(selection).parentNode.classList.add("bg-danger");
     document
       .getElementById(idOfRightAnswer)
@@ -132,4 +133,15 @@ function resetAnswerButtons() {
   document.getElementById("answer_3").parentNode.classList.remove("bg-danger");
   document.getElementById("answer_4").parentNode.classList.remove("bg-success");
   document.getElementById("answer_4").parentNode.classList.remove("bg-danger");
+}
+
+function restartGame(){
+  document.getElementById("show-screen").src = "./img/brainbg.jpg"; // resettes das bild zum neustart des spieles
+  document.getElementById("question-card").style -= "display: none"; // entfernt die klasse von der quizkarte
+  document.getElementById('end-card').style = "display:none;"; // fügt der endcard eine klasse hinzu
+  
+  currentQuestion = 0; // Globale variable wird resettet
+  rightAnswers = 0; // Gloabale variable wird resettet
+
+  init(); // startet das Spiel neu
 }
