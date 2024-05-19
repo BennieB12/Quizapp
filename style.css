@@ -37,3 +37,9 @@ body{
 .width-100{
     width: 100vh;
 }
+
+.final-headline{
+    font-size: 38px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
