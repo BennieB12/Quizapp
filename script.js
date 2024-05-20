@@ -69,46 +69,42 @@ function init() {
 
 function showQuestion() {
   //hilfsfunktion um um aktuelle Frage anzuzeigen in der Init
-
   if (gameIsOver()) { //rufen zur lesbarkeit eine neue funktion auf
     showEndscreen();
-  } else {
-    // ansonsten mach normal weiter , show question
+  } else { // ansonsten mach normal weiter , show question
     updateProgressBar();
     updateToNextQuestion();
     
   }
 }
+
 function gameIsOver(){ // funktion gibt nur das if statement aus, dient nur zur lesbarkeit und nicht azur verbesserung ( valiedierung des Ausdrucks)
- return currentQuestion >= questions.length;
+ return currentQuestion >= questions.length;// das war vorher das if statement der showQuestion- Funktion
 }
-function answer(selection) {
-  //selcetion hat den wert answer_1,2,3 oder 4
+
+function answer(selection) { //selcetion hat den wert answer_1,2,3 oder 4 bzw. den Wert der möglichen Antworten
   let question = questions[currentQuestion]; // um zur aktuellen frage zu kommen
   let selectedQuestionnumber = selection.slice(-1); // der letzte buchstabe des Strings in dem fall die integer 3 wird gespeichert
   let idOfRightAnswer = `answer_${question["right_answer"]}`; // string definiert um bei falscher antwort die richtige zu highlighten
 
-  if (rightAnswerSelected(selectedQuestionnumber)) { // wenn die richtige numemr die ausgewählt nummer ist
+  if (rightAnswerSelected(selectedQuestionnumber)) { // wenn die richtige numemr die ausgewählt nummer ist // der Funktionsparameter ist die Ausgewählte nummer der Frage
     document.getElementById(selection).parentNode.classList.add("bg-success"); // parentnode spricht das übergeornete Element an auch wenn es keine eigene ID hat
     rightAnswers++; // erhöt bei richtiger antwort die Globale variable um 1fum sie später anzuzeigen
     Audio_Success.play(); // spielt die musik an diser stelle ab
-  } else {
-    // ansonsten, sag es ist die falsche antwort
-    document.getElementById(selection).parentNode.classList.add("bg-danger");
-    document
-      .getElementById(idOfRightAnswer)
-      .parentNode.classList.add("bg-success");
+  } else { // ansonsten, sag es ist die falsche antwort
+    document.getElementById(selection).parentNode.classList.add("bg-danger"); //fügt durch parentnode dem übnergeordnetem Container eine Klasse hinzu
+    document.getElementById(idOfRightAnswer).parentNode.classList.add("bg-success"); // das gleiche wie drüber
     Audio_fail.play(); // spielt sound an dieser Stelle ab
   }
   document.getElementById("next-button").disabled = false; // wir sagen das der wert nun false ist und somit falsch ( also enable)
 }
 
-function rightAnswerSelected(selectedQuestionnumber){
-  let question = questions[currentQuestion];
-  return selectedQuestionnumber == question["right_answer"];
+function rightAnswerSelected(selectedQuestionnumber){ //Oben definierte Funktion muss der Parameter mitübergeben Werden, da ssie sonst keine Parameter zum arbeiten hat, da ers keine globale variable ist
+  let question = questions[currentQuestion]; // sonst funktinioert das irgendwie nicht und ich bekomme nur NaN, aber so zeigt er es in prozenten a, also korrekt
+  return selectedQuestionnumber == question["right_answer"]; // der Inhalt der funktion, damit Cleancode. 
 }
-function nextQuestion() {
-  // löst das anzeigen der n#chsten Frage aus
+
+function nextQuestion() { // löst das anzeigen der n#chsten Frage aus
   currentQuestion++; // Wert der Globalen Variable wir erhöhrt um 1, da currentquestion die aktuelle Frage aufruft wird so die nächste frage gespeichert
   document.getElementById("next-button").disabled = true; // setzt den Button zurück
   resetAnswerButtons(); // ruft funktion zum entfernen der klassen auf
@@ -133,7 +129,6 @@ function restartGame() {
 
   currentQuestion = 0; // Globale variable wird resettet
   rightAnswers = 0; // Gloabale variable wird resettet
-
   init(); // startet das Spiel neu
 }
 
@@ -153,14 +148,12 @@ function updateToNextQuestion() {
   document.getElementById("answer_2").innerHTML = question["answer_2"];
   document.getElementById("answer_3").innerHTML = question["answer_3"];
   document.getElementById("answer_4").innerHTML = question["answer_4"];
-
 }
 
 function updateProgressBar() {
   let percent = (currentQuestion + 1) / questions.length; // zum anzeigen der prozente in der progressbar aus bootstrap| aktuelle frage geteilt durch alle fragen
-  
   percent = Math.round(percent * 100); // oben kommt der Wert (0,) raus und dieser Wert wird hier umgewandelt und mit math.round aufgerundet
-  
+
   document.getElementById("progress-bar").innerHTML = `${percent} %`; // in der Progrssbar wird nun der ausgerechnete Wert angezeigt
   document.getElementById("progress-bar").style = `width: ${percent}%;`; // ändern im stylingbereich die weite der progressbar mit style.width zu der größe der Prozentvariable in px
 }
