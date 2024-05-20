@@ -6,6 +6,7 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="fonts.css" />
     <script src="script.js"></script>
 
     <!--bootstrap file-->
@@ -23,9 +24,9 @@
         <span class="navbar-brand mb-0 h1">Quizapp</span>
       </div>
     </nav>
-
-    <div class="container">
-      <div class="card main-card">
+    <div id="order-items">
+      <div class="container">
+        <div class="card main-card">
         <img src=".\img\brainbg.jpg" id="show-screen" class="card-img-top" />
 
         <div class="progress">
@@ -48,12 +49,11 @@
           <div class="button-row">
             <button onclick="restartGame()" type="button" class="btn btn-primary">Replay</button>
           </div>
-
         </div>
 
         <div class="card main-card" id="question-card">
           <div class="card-body">
-            <h5 class="card-title" id="questiontext">Frage</h5>
+            <h5 class="card-title text-center" id="questiontext">Frage</h5>
 
             <div
               class="card quiz-answer-card mb-2"
@@ -88,19 +88,17 @@
                 <b id="actual-question"></b> von
                 <b id="all-questions"></b> Fragen
               </span>
-              <button
-                onclick="nextQuestion()"
-                type="button"
-                class="btn btn-primary"
-                id="next-button"
-                disabled
-              >
-                Nächste Frage
-              </button>
+              <button onclick="lastQuestion()" type="button" class="btn btn-primary" id="last-button" disabled>|</button>
+              <button onclick="nextQuestion()" type="button" class="btn btn-primary" id="next-button" disabled>></button>
             </div>
           </div>
         </div>
+        </div>
+      </div>
+      <div id="endscreen-trophy" style="display: none;">
+        <img src="./img/tropy.png">
       </div>
     </div>
+    
   </body>
 </html>

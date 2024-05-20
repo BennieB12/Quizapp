@@ -111,6 +111,13 @@ function nextQuestion() { // löst das anzeigen der n#chsten Frage aus
   showQuestion(); // ruft erneut die Funktion auf, aber mit erhötem wert in let question = questions[currentQuestion]; , weil mit ++ erhögt wurde
 }
 
+function lastQuestion() { // löst das anzeigen der letzen Frage aus
+  currentQuestion--; // Wert der Globalen Variable wir verringert um 1, da currentquestion die aktuelle Frage aufruft wird so die nächste frage gespeichert
+  document.getElementById("last-button").disabled = true; // setzt den Button zurück
+  resetAnswerButtons(); // ruft funktion zum entfernen der klassen auf
+  showQuestion(); // ruft erneut die Funktion auf, aber mit erhötem wert in let question = questions[currentQuestion]; , weil mit ++ erhögt wurde
+}
+
 function resetAnswerButtons() {
   document.getElementById("answer_1").parentNode.classList.remove("bg-success");
   document.getElementById("answer_1").parentNode.classList.remove("bg-danger");
@@ -126,6 +133,7 @@ function restartGame() {
   document.getElementById("show-screen").src = "./img/brainbg.jpg"; // resettes das bild zum neustart des spieles
   document.getElementById("question-card").style -= "display: none"; // entfernt die klasse von der quizkarte
   document.getElementById("end-card").style = "display:none;"; // fügt der endcard eine klasse hinzu
+  document.getElementById("endscreen-trophy").style = "display:none;"; // entfernt das trophybild durch hinzufügen der display none eigenschaft
 
   currentQuestion = 0; // Globale variable wird resettet
   rightAnswers = 0; // Gloabale variable wird resettet
@@ -138,6 +146,8 @@ function showEndscreen() {
   document.getElementById("question-counter").innerHTML = rightAnswers; // zeigt an wieviele Fragen richtig beantwortet wurden
   document.getElementById("question-card").style = "display: none"; // sorgt dafür das der andere container ausgeblendet wird! (und der neue direkt zentriert wird)
   document.getElementById("show-screen").src = "./img/brain result.png"; // tauscht das bild vom startscreen mit dem endscreen
+  document.getElementById('endscreen-trophy').style = ""; // wir greifen auf das denContainer im Endscreen zu und entfernen die css klasse damit dieser angezeigt wird
+
 }
 
 function updateToNextQuestion() {
